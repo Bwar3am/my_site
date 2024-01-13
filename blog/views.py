@@ -15,7 +15,8 @@ def blog_single(request,pid):
     Post.counted_views += 1
     Post.save()
     next_post=posts.objects.filter(id__gt=pid).order_by('id').first()
-    pre_post=posts.objects.filter(id__lt=pid).order_by('-id').first()       
+    pre_post=posts.objects.filter(id__lt=pid).order_by('-id').first()
+           
     context = {"Post":Post,"next_post":next_post,"pre_post":pre_post}
     if Post.published_date <=timezone.now() and Post.status == 1:
         return render(request,"blog-single.html",context)
