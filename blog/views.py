@@ -5,15 +5,15 @@ from django.views.generic import DetailView
 
 # Create your views here.
 def blog_view(request):
-    Post=posts.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    Post=posts.objects.filter(status=1,published_date__lte=timezone.now()).order_by('published_date')
     context = {"Post":Post}
     return render(request,"blog-home.html",context)
     
         
 def blog_single(request,pid):
     Post=get_object_or_404(posts,id=pid) 
-    next_post=posts.objects.filter(id__gt=pid).order_by('id').first()
-    pre_post=posts.objects.filter(id__lt=pid).order_by('-id').first()       
+    next_post=posts.objects.filter(status=1,id__gt=pid).order_by('id').first()
+    pre_post=posts.objects.filter(status=1,id__lt=pid).order_by('-id').first()     
     context = {"Post":Post,"next_post":next_post,"pre_post":pre_post}
     Post.counted_views += 1
     Post.save()
@@ -32,7 +32,8 @@ def test(request,pid):
     
          
 #Post=posts.objects.get(id=pid)        
-                                
+ #next_post=posts.objects.filter(id__gt=pid).order_by('id').first()
+#    pre_post=posts.objects.filter(id__lt=pid).order_by('-id').first()                                            
  
 
        
