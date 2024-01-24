@@ -6,8 +6,12 @@ from django.utils import timezone
 # Create your models here.
 class category(models.Model):
     name=models.CharField(max_length=150)
-    \
      
+    def __str__(self):
+      
+        return self.name
+    
+    
  
 class posts(models.Model):
     
@@ -25,7 +29,6 @@ class posts(models.Model):
     class meta:
         ordering=['-created_date']
     
-    #published_date_time = models.DateTimeField(null=True)
            
     
     

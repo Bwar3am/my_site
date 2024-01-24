@@ -1,3 +1,5 @@
+{% load static %}
+{% load blog_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +8,9 @@
     <title>Document</title>
 </head>
 <body>
-   <p>{{Post.title}}</p>
-   
+   <h1>test page</h1>
+    <p>test: </p>
+    {% popularposts %}
 
 </body>
 </html>
