@@ -1,0 +1,43 @@
+{% load static %}
+
+        <div class="single-recent-blog-post item">
+          {% for post in Post%}
+          <div class="thumb">
+            <img class="img-fluid" src="{{post.image.url}}" alt="" />
+          </div>
+          <div class="details">
+            <div class="tags">
+              <ul>
+                <li>
+                  <a href="{% url "blog:single" pid=post.id     %}">Travel</a>
+                </li>
+                <li>
+                  <a href="{% url "blog:single" pid=post.id     %}">Life Style</a>
+                </li>
+              </ul>
+            </div>
+            
+            <a href=""><h4 class="">{{post.title}}</h4></a>
+            <p>{{post.content|truncatewords:3}}</p>
+            <h6 class="date">{{post.published_date|date:"Y/M/d h:m"}}</h6>
+          </div>
+          {% endfor %}
+
+        </div>
+  
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End recent-blog Area -->   
+  
+
+
+
+
+   
+    
+ 
+
+

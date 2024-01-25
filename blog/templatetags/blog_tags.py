@@ -29,6 +29,9 @@ def postscategories():
     for name in Categories:
       cate_dict[name]=Post.filter(category=name).count()
     return {'Categories':cate_dict}  
-    
+@register.inclusion_tag('recent-blog.html')
+def recentblog(arg=6):
+    Post=posts.objects.filter(status=1).order_by('published_date')[:arg]
+    return {'Post':Post}    
     
      
