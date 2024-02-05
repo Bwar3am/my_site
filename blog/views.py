@@ -6,12 +6,17 @@ from django.core.paginator import Paginator , EmptyPage , PageNotAnInteger
 
 
 # Create your views here.
-def blog_view(request,cat_name=None,author_username=None):
+def blog_view(request,**kwargs):
     Post=posts.objects.filter(status=1,published_date__lte=timezone.now()).order_by('published_date')
-    if cat_name:
-       Post=Post.filter(category__name=cat_name)
-    if author_username:
-        Post=Post.filter(author__username=author_username)
+    if kwargs.get('cat_name') != None:
+       Post=Post.filter(category__name=kwargs['cat_name'])
+    if kwargs.get('author_username')!=None:
+        Post=Post.filter(author__username=kwargs['author_username'])
+    if kwargs.get('tag_name'):
+        Post=Post.filter(tags__name__in=kwargs['tag_name'])
+        
+        
+    
     Post=Paginator(Post,3)
     try:    
        page_number=request.GET.get('page')

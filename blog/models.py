@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import  User
 from django.urls import reverse
 from django.utils import timezone
+from taggit.managers import TaggableManager
+
 
 # Create your models here.
 class category(models.Model):
@@ -24,6 +26,7 @@ class posts(models.Model):
     status = models.BooleanField(max_length=100, default=False)
     published_date = models.DateTimeField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
+    tags = TaggableManager()
     updated_date = models.DateTimeField(auto_now=True)
     search_fields=['content','title']
     class meta:
@@ -38,3 +41,8 @@ class posts(models.Model):
 
     def snippest(self):
         return self.content[:100] + "..."
+    
+    def get_absolute_url(self):
+        return reverse('blog:single', kwargs={'pid': self.pid})
+        #pass
+    

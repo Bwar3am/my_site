@@ -4495,3 +4495,11 @@ body.mobile-nav-active #mobile-nav-toggle {
 .footer-text a, .footer-text i {
   color: #f8b600;
 }
+
+.success{
+  list-style: none;
+  background-color: #38a4ff;
+  color: white;
+  box-shadow: 12px 12px 12px #e61c66;
+  text-align: center;
+}
