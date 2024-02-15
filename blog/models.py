@@ -24,6 +24,7 @@ class posts(models.Model):
     counted_views = models.IntegerField(default=0 )
     category=models.ManyToManyField(category)
     status = models.BooleanField(max_length=100, default=False)
+    login_required = models.BooleanField(default=False)
     published_date = models.DateTimeField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     tags = TaggableManager()
@@ -45,4 +46,22 @@ class posts(models.Model):
     def get_absolute_url(self):
         return reverse('blog:single', kwargs={'pid': self.pid})
         #pass
+    
+    
+class comment(models.Model):
+    post=models.ForeignKey( posts , on_delete=models.CASCADE)
+    name = models.CharField(max_length=140)
+    email=models.EmailField()
+    subject = models.CharField(max_length=190)
+    approach=models.BooleanField(default=False)
+    message= models.TextField()
+    created_date=models.DateTimeField(auto_now_add=True)   
+    updated_date=models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['-created_date']
+    
+    def __str__(self):
+      
+          return self.name
     

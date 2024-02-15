@@ -1,11 +1,15 @@
-from django.shortcuts import render,HttpResponse,get_object_or_404
-from blog.models import posts,category
+from django.shortcuts import render,HttpResponse,get_object_or_404 , redirect
+from blog.models import posts,category,comment 
 from django.utils import timezone
 from django.views.generic import DetailView
 from django.core.paginator import Paginator , EmptyPage , PageNotAnInteger
+from blog.forms import CommentForm
+from django.contrib import messages
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 
 
-# Create your views here.
+
 def blog_view(request,**kwargs):
     Post=posts.objects.filter(status=1,published_date__lte=timezone.now()).order_by('published_date')
     if kwargs.get('cat_name') != None:
@@ -34,10 +38,25 @@ def blog_view(request,**kwargs):
     
         
 def blog_single(request,pid):
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request,messages.SUCCESS , 'youre ticket has been submited successfully')
+        else:
+            messages.add_message(request,messages.ERROR , 'error please try again')
+    
+        
+       
     Post=get_object_or_404(posts,id=pid) 
     next_post=posts.objects.filter(status=1,id__gt=pid,published_date__lte=timezone.now()).order_by('id','published_date').first()
-    pre_post=posts.objects.filter(status=1,id__gt=pid,published_date__lte=timezone.now()).order_by('id','published_date').first()    
-    context = {"Post":Post,"next_post":next_post,"pre_post":pre_post}
+    pre_post=posts.objects.filter(status=1,id__gt=pid,published_date__lte=timezone.now()).order_by('id','published_date').first() 
+    if not Post.login_required:
+        comments=comment.objects.filter(post=Post.id,approach=True)
+        form = CommentForm()
+        context = {"Post":Post,"next_post":next_post,"pre_post":pre_post , "comments":comments , "form":form}
+    else:
+        return HttpResponseRedirect(reverse('accounts:login'))   
     Post.counted_views += 1
     Post.save()
     if Post.published_date <=timezone.now() and Post.status == 1:

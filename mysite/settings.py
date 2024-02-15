@@ -34,30 +34,43 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'website',
-    'blog',
-    'robots',
-    'django_extensions',
+    'django.contrib.humanize',
+   
     'django.contrib.sites',
     'django.contrib.sitemaps',
-    'django.contrib.humanize',
+    'robots',
+    'django_extensions',
     'debug_toolbar',
-    "taggit",
-    'django_summernote', 
+    'taggit',
+    'django_summernote',
+    'captcha',
+    
+    'website',
+    'blog',
+    #'accounts',
+    
+    
+    
     
     
 ]
 
 
+
 SITE_ID = 1
 ROBOTS_USE_HOST = False
 SUMMERNOTE_THEME = 'bs4' 
+
+
+
 
 
 MIDDLEWARE = [
@@ -77,7 +90,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates/template','templates/blog'],
+        'DIRS': [BASE_DIR / 'templates/template','templates/blog' , 'templates/accounts'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
