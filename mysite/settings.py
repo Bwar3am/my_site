@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+     'allauth',
+     'allauth.account',
    
     'django.contrib.sites',
     'django.contrib.sitemaps',
@@ -61,6 +63,12 @@ INSTALLED_APPS = [
     
     
     
+    
+]
+
+AUTHENTICATION_BACKENDS = [
+    'allauth.account.auth_backends.AuthenticationBackend',
+    # ...
 ]
 
 
@@ -82,6 +90,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'allauth.account.middleware.AccountMiddleware',
 ]
  
 ROOT_URLCONF = 'mysite.urls'
@@ -90,7 +99,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates/template','templates/blog' , 'templates/accounts'],
+        'DIRS': [BASE_DIR / 'templates/template','templates/blog' , 'templates/accounts' ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -172,3 +181,16 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+LOGIN_REDIRECT_URL = '/'
+
+# settings.py
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'barsamhassanzadehaski@gmail.com'  # Replace with your Gmail address
+EMAIL_HOST_PASSWORD = 'cxkh hire xoyl jqot'  
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
+

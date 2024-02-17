@@ -17,8 +17,9 @@
     <link rel="stylesheet" href="{%static 'css/signin.css' %}">
   </head>
 <body class="text-center">
-  <form class="form-signin" method='post' action="{% url 'accounts:signin' %}">
+  <form class="form-signin" method='post' action="{% url 'signin' %}">
       {% csrf_token %}
+      {{form as_p }}
       <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal"> signup</h1>
       <label for="inputEmail" class="sr-only">username address</label>
