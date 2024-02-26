@@ -3550,7 +3550,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .widget-wrap .single-sidebar-widget {
-  margin: 30px 30px;
+  margin: 30px 0px;
   padding-bottom: 30px;
   border-bottom: 1px solid #eee;
 }

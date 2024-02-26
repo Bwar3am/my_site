@@ -1,3 +1,4 @@
+
 """
 Django settings for mysite project.
 
@@ -19,16 +20,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-3x2ce32+4k3u6e_^0$5+mk(f_@nzq=!#xs3)nvotdype-$w*$_'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -73,7 +65,7 @@ AUTHENTICATION_BACKENDS = [
 
 
 
-SITE_ID = 1
+#SITE_ID = 1
 ROBOTS_USE_HOST = False
 SUMMERNOTE_THEME = 'bs4' 
 
@@ -161,16 +153,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / "static"
+
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR  / "media"
 
-
-STATICFILES_DIRS = [
-    BASE_DIR / "statics",
-]
-    
 
 
 # Default primary key field type
@@ -188,9 +174,10 @@ LOGIN_REDIRECT_URL = '/'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'barsamhassanzadehaski@gmail.com'  # Replace with your Gmail address
-EMAIL_HOST_PASSWORD = 'cxkh hire xoyl jqot'  
+EMAIL_HOST_PASSWORD = 'aqkj mdxr mvzl leca'  
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+CSRF_COOKIE_SECURE = True
 
 
