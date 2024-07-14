@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 
-
+SITE_ID = 1
 
 # Application definition
 
@@ -35,8 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-     'allauth',
-     'allauth.account',
+    'allauth',
+    'allauth.account',
    
     'django.contrib.sites',
     'django.contrib.sitemaps',
@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     
     'website',
     'blog',
-    #'accounts',
+    
     
     
     
@@ -60,7 +60,7 @@ INSTALLED_APPS = [
 
 AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
-    # ...
+    
 ]
 
 
@@ -91,7 +91,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates/template','templates/blog' , 'templates/accounts' ],
+        'DIRS': [BASE_DIR / 'templates/template','templates/blog'  ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
